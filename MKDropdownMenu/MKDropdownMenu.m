@@ -332,6 +332,7 @@ static UIImage *disclosureIndicatorImage = nil;
 
 @property (strong, nonatomic) UIView *borderView;
 @property (strong, nonatomic) CAShapeLayer *borderLayer;
+@property (strong, nonatomic) CAShapeLayer *tableViewBorderLayer;
 @property (assign, nonatomic) BOOL showsBorder;
 
 @property (strong, nonatomic) UIView *tableContainerView;
@@ -465,7 +466,13 @@ static UIImage *disclosureIndicatorImage = nil;
     
     self.borderView.hidden = YES;
     
-    
+    self.tableViewBorderLayer = [CAShapeLayer layer];
+    self.tableViewBorderLayer.frame = self.tableView.bounds;
+    self.tableViewBorderLayer.fillColor = [[UIColor clearColor] CGColor];
+    self.tableViewBorderLayer.strokeColor = [[UIColor blackColor] CGColor];
+    self.tableViewBorderLayer.lineWidth = 1;
+    [self.tableView.layer addSublayer:self.tableViewBorderLayer];
+
     /* Add subviews */
     
     [self.view addSubview:self.containerView];
@@ -600,6 +607,8 @@ static UIImage *disclosureIndicatorImage = nil;
     self.shadowView.layer.shadowRadius = MAX(r, kDefaultCornerRadius);
     
     self.borderLayer.path = maskPath.CGPath;
+    
+    self.tableViewBorderLayer.path = maskPath.CGPath;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1245,6 +1254,10 @@ static const CGFloat kScrollViewBottomSpace = 5;
 - (void)setComponentSeparatorColor:(UIColor *)componentSeparatorColor {
     _componentSeparatorColor = componentSeparatorColor;
     [self updateComponentSeparators];
+}
+
+- (void) setTableBorderColor:(UIColor *)tableBorderColor {
+    _tableBorderColor = tableBorderColor;
 }
 
 - (void)setRowSeparatorColor:(UIColor *)rowSeparatorColor {

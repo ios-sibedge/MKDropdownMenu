@@ -60,6 +60,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// The color of the header components separator lines (vertical).
 @property (nullable, strong, nonatomic) UIColor *componentSeparatorColor UI_APPEARANCE_SELECTOR;
 
+/// The color of the tableView border (left, bottom, right).
+@property (nullable, strong, nonatomic) UIColor *tableBorderColor UI_APPEARANCE_SELECTOR;
+
 /// The color of the dropdown rows separators (horizontal).
 @property (nullable, strong, nonatomic) UIColor *rowSeparatorColor UI_APPEARANCE_SELECTOR;
 
