@@ -471,7 +471,7 @@ static UIImage *disclosureIndicatorImage = nil;
     self.tableViewBorderLayer.fillColor = [[UIColor clearColor] CGColor];
     self.tableViewBorderLayer.strokeColor = [[UIColor blackColor] CGColor];
     self.tableViewBorderLayer.lineWidth = 1;
-    [self.tableView.layer addSublayer:self.tableViewBorderLayer];
+    [self.containerView.layer addSublayer:self.tableViewBorderLayer];
 
     /* Add subviews */
     
