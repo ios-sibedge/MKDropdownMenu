@@ -1448,7 +1448,14 @@ static const CGFloat kScrollViewBottomSpace = 5;
             [self.delegate dropdownMenu:self didCloseComponent:previousComponent];
         }
     } else {
-        presentation();
+        BOOL shouldProceed = YES;
+        if ([self.delegate respondsToSelector:@selector(dropdownMenu:shouldOpen:)]) {
+            shouldProceed = [self.delegate dropdownMenu:self shouldOpen:component];
+        }
+        
+        if ( shouldProceed ) {
+            presentation();
+        }
     }
 }
 

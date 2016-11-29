@@ -33,21 +33,19 @@ NS_ENUM(NSInteger, DropdownComponents) {
     
     // Set up dropdown menu loaded from storyboard
     // Note that `dataSource` and `delegate` outlets are connected in storyboard
-    
-    self.dropdownMenu.layer.borderColor = [[UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1.0] CGColor];
-    self.dropdownMenu.layer.borderWidth = 0.5;
-    
-    UIColor *selectedBackgroundColor = [UIColor colorWithRed:0.91 green:0.92 blue:0.94 alpha:1.0];
-    self.dropdownMenu.selectedComponentBackgroundColor = selectedBackgroundColor;
-    self.dropdownMenu.dropdownBackgroundColor = selectedBackgroundColor;
+//    
+//    self.dropdownMenu.layer.borderColor = [[UIColor colorWithRed:0.78 green:0.78 blue:0.8 alpha:1.0] CGColor];
+//    self.dropdownMenu.layer.borderWidth = 0.5;
     
     self.dropdownMenu.dropdownShowsTopRowSeparator = NO;
-    self.dropdownMenu.dropdownShowsBorder = YES;
+    self.dropdownMenu.dropdownDropsShadow = NO;
+    self.dropdownMenu.rowSeparatorColor = [UIColor clearColor];
+    self.dropdownMenu.tableBorderColor  = [UIColor magentaColor];
     
-    self.dropdownMenu.backgroundDimmingOpacity = 0.05;
-    
-    
-    // Set up shape view
+    self.dropdownMenu.disclosureIndicatorImage = [UIImage imageNamed:@"Checkmark"];
+    self.dropdownMenu.disclosureIndicatorSelectionRotation = 0;
+    self.dropdownMenu.backgroundDimmingOpacity = 0;
+    self.dropdownMenu.tableBorderColor = [UIColor redColor];
     
     self.shapeView.sidesCount = 2;
     self.shapeView.fillColor = [UIColor lightGrayColor];

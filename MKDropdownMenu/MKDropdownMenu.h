@@ -215,6 +215,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Called when a row was tapped. If selection needs to be handled, use `-(de)selectRow:inComponent:` as appropriate.
 - (void)dropdownMenu:(MKDropdownMenu *)dropdownMenu didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 
+- (BOOL)dropdownMenu:(MKDropdownMenu *)dropdownMenu shouldOpen:(NSInteger)component;
+
 /// Called when the component was expanded.
 - (void)dropdownMenu:(MKDropdownMenu *)dropdownMenu didOpenComponent:(NSInteger)component;
 
