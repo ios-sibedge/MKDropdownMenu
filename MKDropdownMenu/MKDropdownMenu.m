@@ -469,8 +469,8 @@ static UIImage *disclosureIndicatorImage = nil;
     self.tableViewBorderLayer = [CAShapeLayer layer];
     self.tableViewBorderLayer.frame = self.tableView.bounds;
     self.tableViewBorderLayer.fillColor = [[UIColor clearColor] CGColor];
-    self.tableViewBorderLayer.strokeColor = [[UIColor blackColor] CGColor];
-    self.tableViewBorderLayer.lineWidth = 1;
+    self.tableViewBorderLayer.strokeColor = [[UIColor clearColor] CGColor];
+    self.tableViewBorderLayer.lineWidth = 1.0 / [[UIScreen mainScreen] scale];
     [self.containerView.layer addSublayer:self.tableViewBorderLayer];
 
     /* Add subviews */
@@ -517,7 +517,7 @@ static UIImage *disclosureIndicatorImage = nil;
     [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[v]|" options:kNilOptions metrics:nil views:@{@"v": self.tableContainerView}]];
     [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[s][v]|" options:kNilOptions metrics:nil views:@{@"s": self.separatorContainerView, @"v": self.tableContainerView}]];
     
-    [self.tableContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[v]|" options:kNilOptions metrics:nil views:@{@"v": self.tableView}]];
+    [self.tableContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-1-[v]-1-|" options:kNilOptions metrics:nil views:@{@"v": self.tableView}]];
     [self.tableContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[v]|" options:kNilOptions metrics:nil views:@{@"v": self.tableView}]];
     
     [self.containerView addConstraints:@[[NSLayoutConstraint constraintWithItem:self.shadowView
@@ -609,11 +609,11 @@ static UIImage *disclosureIndicatorImage = nil;
     self.borderLayer.path = maskPath.CGPath;
     
     UIBezierPath *aPath = [UIBezierPath bezierPath];
-    [aPath moveToPoint:CGPointMake(0.0, 0.0)];
-    [aPath addLineToPoint:CGPointMake(0, self.tableContainerView.bounds.size.height)];
-    [aPath addLineToPoint:CGPointMake(self.tableContainerView.bounds.size.width, self.tableContainerView.bounds.size.height)];
-    [aPath addLineToPoint:CGPointMake(self.tableContainerView.bounds.size.width, 0)];
-    [aPath moveToPoint:CGPointMake(0.0, 0.0)];
+    [aPath moveToPoint:CGPointMake(0.5, 0.0)];
+    [aPath addLineToPoint:CGPointMake(0.5, self.containerView.bounds.size.height)];
+    [aPath addLineToPoint:CGPointMake(self.containerView.bounds.size.width, self.tableContainerView.bounds.size.height)];
+    [aPath addLineToPoint:CGPointMake(self.containerView.bounds.size.width, 0)];
+    [aPath moveToPoint:CGPointMake(0.5, 0.0)];
     [aPath closePath];
     
     self.tableViewBorderLayer.path = aPath.CGPath;
