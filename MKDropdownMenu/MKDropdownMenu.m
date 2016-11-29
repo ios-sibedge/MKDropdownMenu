@@ -608,7 +608,15 @@ static UIImage *disclosureIndicatorImage = nil;
     
     self.borderLayer.path = maskPath.CGPath;
     
-    self.tableViewBorderLayer.path = maskPath.CGPath;
+    UIBezierPath *aPath = [UIBezierPath bezierPath];
+    [aPath moveToPoint:CGPointMake(0.0, 0.0)];
+    [aPath addLineToPoint:CGPointMake(0, self.tableContainerView.bounds.size.height)];
+    [aPath addLineToPoint:CGPointMake(self.tableContainerView.bounds.size.width, self.tableContainerView.bounds.size.height)];
+    [aPath addLineToPoint:CGPointMake(self.tableContainerView.bounds.size.width, 0)];
+    [aPath moveToPoint:CGPointMake(0.0, 0.0)];
+    [aPath closePath];
+    
+    self.tableViewBorderLayer.path = aPath.CGPath;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1258,6 +1266,7 @@ static const CGFloat kScrollViewBottomSpace = 5;
 
 - (void) setTableBorderColor:(UIColor *)tableBorderColor {
     _tableBorderColor = tableBorderColor;
+    self.contentViewController.tableViewBorderLayer.strokeColor = tableBorderColor.CGColor;
 }
 
 - (void)setRowSeparatorColor:(UIColor *)rowSeparatorColor {
