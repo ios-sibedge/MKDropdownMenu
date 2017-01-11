@@ -422,6 +422,7 @@ static UIImage *disclosureIndicatorImage = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor mk_defaultSeparatorColor];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
     
     self.showsTopRowSeparator = YES;
     
